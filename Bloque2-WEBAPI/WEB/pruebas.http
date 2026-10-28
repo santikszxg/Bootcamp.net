@@ -1,0 +1,76 @@
+@baseUrl = http://localhost:5068
+@productoId = 1
+
+### 1. Obtener todos los productos
+GET {{baseUrl}}/api/productos
+
+### 2. Crear un producto válido
+POST {{baseUrl}}/api/productos
+Content-Type: application/json
+
+{
+  "nombre": "Mouse Gamer",
+  "precio": 15000,
+  "categoria": "Perifericos"
+}
+
+### 3. Crear producto con precio cero (debe dar 400)
+POST {{baseUrl}}/api/productos
+Content-Type: application/json
+
+{
+  "nombre": "Mouse Gamer",
+  "precio": 0,
+  "categoria": "Perifericos"
+}
+
+### 4. Crear producto con nombre demasiado corto (debe dar 400)
+POST {{baseUrl}}/api/productos
+Content-Type: application/json
+
+{
+  "nombre": "AB",
+  "precio": 15000,
+  "categoria": "Perifericos"
+}
+
+### 5. Consultar un ID inexistente (debe dar 404)
+GET {{baseUrl}}/api/productos/999
+
+### 6. Actualizar un ID inexistente (debe dar 404)
+PUT {{baseUrl}}/api/productos/999
+Content-Type: application/json
+
+{
+  "id": 999,
+  "nombre": "Producto inexistente",
+  "precio": 2000,
+  "categoria": "Prueba",
+  "activo": true
+}
+
+### 7. Eliminar un ID inexistente (debe dar 404)
+DELETE {{baseUrl}}/api/productos/999
+}
+
+### 8. Obtener producto existente (debe dar 200)
+GET http://localhost:5068/api/productos/2
+
+
+### 9. Actualizar producto existente (debe dar 204)
+PUT http://localhost:5068/api/productos/2
+Content-Type: application/json
+
+{
+  "id": 2,
+  "nombre": "Teclado Mecanico",
+  "precio": 25000,
+  "categoria": "Perifericos",
+  "activo": true
+}
+
+### 10. Eliminar producto existente (debe dar 204)
+DELETE http://localhost:5068/api/productos/2
+
+### 11. Consultar producto eliminado (debe dar 404)
+GET http://localhost:5068/api/productos/2
